@@ -1,0 +1,39 @@
+version: '2.3'
+
+services:
+  user-api:
+    build: ./user-api
+    command: npm run dev
+    healthcheck:
+      test: curl --silent --fail localhost:3000/_health_check || exit 1
+      interval: 5s
+      retries: 5
+    volumes:
+      - ./user-api/src/:/app/src
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - mongo
+
+  wishlist-api:
+    build: ./wishlist-api
+    command: npm run dev
+    healthcheck:
+      test: curl --silent --fail localhost:4000/_health_check || exit 1
+      interval: 5s
+      retries: 5
+    volumes:
+      - ./wishlist-api/src/:/app/src
+    ports:
+      - 4000:4000
+    environment:
+      - NODE_ENV=development
+
+  mongo:
+    image: mongo
+    volumes:
+      - ./db:/data/db
+    ports:
+      - "27017:27017"
