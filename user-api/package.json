@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@hapi/joi": "17.1.1",
+    "bcryptjs": "2.4.3",
     "cuid": "2.1.8",
     "dotenv": "8.2.0",
     "express": "4.17.1",
+    "jsonwebtoken": "8.5.1",
     "moment": "2.24.0",
     "mongoose": "5.9.25",
     "ramda": "0.25.0"

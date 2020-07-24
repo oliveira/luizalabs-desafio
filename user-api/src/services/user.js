@@ -2,21 +2,22 @@ const UserRepository = require('../repositories/user')
 const { ErrorHandler } = require('../middlewares/error-handler')
 
 exports.create = async (user) => {
-    const createdUser = await UserRepository.create(user)
-
-    return createdUser
+  console.log('>>>chegou')
+  const createdUser = await UserRepository.create(user)
+  return createdUser
 }
 
-exports.find = async (companyId) => {
-  try {
-    const user = await UserRepository.find(companyId)
+exports.update = async (id, user) => {
+  const updatedUser = await UserRepository.update(id, user)
+  return updatedUser
+}
 
-    return user
-  } catch (err) {
-    throw new ErrorHandler(404, [
-      {
-        message: 'Resource not found',
-      },
-    ])
-  }
+exports.findById = async (companyId) => {
+  const user = await UserRepository.findById(companyId)
+  return user
+}
+
+exports.delete = async (id) => {
+  const deletedUser = await UserRepository.delete(id)
+  return deletedUser
 }

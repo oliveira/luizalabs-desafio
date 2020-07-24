@@ -4,7 +4,6 @@ const { map, omit } = require('ramda')
 const { ErrorHandler } = require('../error-handler')
 
 const schema = Joi.object({
-  name: Joi.string().required(),
   email: Joi.string().required(),
   password: Joi.string().required(),
 })
@@ -20,7 +19,7 @@ const validations = (body) => {
 
 const removeUnusedProperties = map(omit(['type', 'context']))
 
-const userValidationsMiddleware = (req, res, next) => {
+const authValidationsMiddleware = (req, res, next) => {
   try {
     const { body } = req
     const { error } = validations(body)
@@ -38,5 +37,5 @@ const userValidationsMiddleware = (req, res, next) => {
 
 module.exports = {
   validations,
-  userValidationsMiddleware,
+  authValidationsMiddleware,
 }
