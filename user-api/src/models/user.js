@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const AffiliationSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -12,4 +12,4 @@ const AffiliationSchema = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('Affiliation', AffiliationSchema)
+module.exports = mongoose.model('User', UserSchema)

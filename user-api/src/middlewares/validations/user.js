@@ -19,7 +19,7 @@ const validations = (body) => {
 
 const removeUnusedProperties = map(omit(['type', 'context']))
 
-const affiliationValidationsMiddleware = (req, res, next) => {
+const userValidationsMiddleware = (req, res, next) => {
   try {
     const { body } = req
     const { error } = validations(body)
@@ -37,5 +37,5 @@ const affiliationValidationsMiddleware = (req, res, next) => {
 
 module.exports = {
   validations,
-  affiliationValidationsMiddleware,
+  userValidationsMiddleware,
 }

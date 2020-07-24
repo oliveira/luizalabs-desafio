@@ -1,20 +1,20 @@
 const routes = require('express').Router()
 
-const AffiliationController = require('./controllers/affiliation')
+const UserController = require('./controllers/user')
 
 const {
-  affiliationValidationsMiddleware,
-} = require('./middlewares/validations/affiliation')
+  userValidationsMiddleware,
+} = require('./middlewares/validations/user')
 
 routes.post(
-  '/affiliations',
-  affiliationValidationsMiddleware,
-  AffiliationController.create
+  '/users',
+  userValidationsMiddleware,
+  UserController.create
 )
 
 routes.get(
-  '/affiliations/:company_id',
-  AffiliationController.find
+  '/users/:company_id',
+  UserController.find
 )
 
 routes.get('/_health_check', (req, res) => res.send('ok'))

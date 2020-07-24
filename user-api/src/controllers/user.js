@@ -1,10 +1,10 @@
 const { applySpec, always, prop } = require('ramda')
 
-const AffiliationService = require('../services/affiliation')
+const UserService = require('../services/user')
 
 const responseFormat = applySpec({
   data: {
-    type: always('affiliation'),
+    type: always('user'),
     id: prop('id'),
     company_id: prop('company_id'),
     providers: prop('providers'),
@@ -14,10 +14,10 @@ const responseFormat = applySpec({
 
 exports.create = async (req, res, next) => {
   try {
-    const { body: affiliationReq } = req
-    const createdAffiliation = await AffiliationService.create(affiliationReq)
+    const { body: userReq } = req
+    const createdUser = await UserService.create(userReq)
 
-    return res.status(200).json(responseFormat(createdAffiliation))
+    return res.status(200).json(responseFormat(createdUser))
   } catch (error) {
     next(error)
   }
@@ -26,9 +26,9 @@ exports.create = async (req, res, next) => {
 exports.find = async (req, res, next) => {
   try {
     const { company_id } = req.params
-    const foundAffiliation = await AffiliationService.find(company_id)
+    const foundUser = await UserService.find(company_id)
 
-    return res.status(200).json(responseFormat(foundAffiliation))
+    return res.status(200).json(responseFormat(foundUser))
   } catch (error) {
     next(error)
   }
