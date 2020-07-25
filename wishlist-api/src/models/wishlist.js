@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Product = sequelize.define('Product', {
+  const Wishlist = sequelize.define('Wishlist', {
     user_id: {
       type: DataTypes.STRING,
       allowNull: false
@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    id: {
+    product_id: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -28,7 +28,20 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-  }, {})
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      default: Date.now()
+    }
+  }, {
+    freezeTableName: true,
+    tableName: 'wishlist',
+    timestamps: false
+})
 
-  return Product
+  return Wishlist
 }

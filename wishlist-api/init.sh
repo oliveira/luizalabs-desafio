@@ -1,3 +1,3 @@
 #!/bin/sh
-npm run migrate:latest
-npm start
+npx sequelize db:migrate
+npm run dev

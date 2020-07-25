@@ -9,4 +9,6 @@ RUN npm install -q
 
 ADD / ./
 
+RUN chmod +x init.sh
+
 ENTRYPOINT [ "./init.sh" ]

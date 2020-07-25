@@ -22,7 +22,7 @@ services:
     volumes:
       - ./db:/data/db
     ports:
-      - "27017:27017"
+      - 27017:27017
 
   wishlist-api:
     build: ./wishlist-api
@@ -47,6 +47,6 @@ services:
       POSTGRES_PASSWORD: "password"
       POSTGRES_DB: "wishlist"
     ports:
-      - "5432:5432"
+      - 5432:5432
     volumes:
       - ./db/postgres-volume:/var/lib/postgresql/data

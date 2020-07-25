@@ -14,19 +14,20 @@
   "dependencies": {
     "@hapi/joi": "17.1.1",
     "cuid": "2.1.8",
-    "dotenv": "8.2.0",
+    "dotenv": "^8.2.0",
     "express": "4.17.1",
     "jsonwebtoken": "8.5.1",
     "moment": "2.24.0",
     "pg": "8.3.0",
     "ramda": "0.25.0",
-    "sequelize": "6.3.3"
+    "sequelize": "5.22.3"
   },
   "devDependencies": {
-    "nodemon": "2.0.3",
     "eslint": "6.8.0",
     "eslint-config-pagarme-base": "3.0.0",
-    "eslint-plugin-import": "2.20.1"
+    "eslint-plugin-import": "2.20.1",
+    "nodemon": "2.0.3",
+    "sequelize-cli": "^6.2.0"
   },
   "author": "",
   "license": "ISC"
