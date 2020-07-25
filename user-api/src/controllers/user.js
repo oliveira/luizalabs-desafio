@@ -40,8 +40,9 @@ exports.update = async (req, res, next) => {
   try {
     const { body: userReq } = req
     const { id } = req.params
+    const authUserId = req.userId
 
-    const updatedUser = await UserService.update(id, userReq)
+    const updatedUser = await UserService.update(authUserId, id, userReq)
 
     return res.status(200).json(responseFormat(updatedUser))
   } catch (error) {
@@ -52,7 +53,9 @@ exports.update = async (req, res, next) => {
 exports.find = async (req, res, next) => {
   try {
     const { id } = req.params
-    const foundUser = await UserService.findById(id)
+    const authUserId = req.userId
+
+    const foundUser = await UserService.findById(authUserId, id)
 
     return res.status(200).json(responseFormat(foundUser))
   } catch (error) {
@@ -63,9 +66,11 @@ exports.find = async (req, res, next) => {
 exports.delete = async (req, res, next) => {
   try {
     const { id } = req.params
-    const deletedUser = await UserService.delete(id)
+    const authUserId = req.userId
 
-    return res.status(200).json({message: `User deleted`})
+    const deletedUser = await UserService.delete(authUserId, id)
+
+    return res.status(204).json({message: 'Resource deleted successfully'})
   } catch (error) {
     next(error)
   }

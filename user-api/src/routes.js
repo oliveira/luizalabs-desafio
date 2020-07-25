@@ -4,14 +4,9 @@ const UserController = require('./controllers/user')
 
 const {
   userValidationsMiddleware,
-} = require('./middlewares/validations/user')
-
-const {
   authValidationsMiddleware,
-} = require('./middlewares/validations/auth')
-
-const authenticateResource = require('./middlewares/authentication/verify-token')
-
+  authenticateResource
+} = require('./middlewares')
 
 routes.post(
   '/auth',

@@ -19,7 +19,6 @@ exports.create = async ({ name, email, password }) => {
       password: hashPassword,
       created_at: moment().toISOString(),
     })
-    console.log('>>>user', user)
 
     return await user.save()
   } catch (err) {
@@ -39,7 +38,6 @@ exports.update = async (id, userData) => {
     throw new ErrorHandler(404, ['Resource not found'])
   }
 
-  console.log('>>respository:', user)
   user.email = userData.email
   user.name = userData.name
   user.save()
@@ -48,9 +46,10 @@ exports.update = async (id, userData) => {
 }
 
 exports.findById = async (id) => {
-  console.log('>>>id:', id)
-  const user = await User.findOne({ _id: id, enabled: true })
-  console.log('>>>user:', user)
+  const user = await User.findOne(
+    { _id: id, enabled: true }
+  )
+
   if (user === null) {
     throw new ErrorHandler(404, ['Resource not found'])
   }
@@ -59,9 +58,10 @@ exports.findById = async (id) => {
 }
 
 exports.findByEmail = async (email) => {
-  const user = await User.findOne({ email: email, enabled: true })
+  const user = await User.findOne(
+    { email: email, enabled: true }
+  )
 
-  console.log('>>>>find by email: ', user)
   if (user === null) {
     throw new ErrorHandler(404, ['Resource not found'])
   }
