@@ -9,4 +9,4 @@ RUN npm install -q
 
 ADD / ./
 
-CMD ["npm", "start"]
+ENTRYPOINT [ "./init.sh" ]
