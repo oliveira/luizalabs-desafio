@@ -30,6 +30,8 @@ services:
       - 4000:4000
     environment:
       - NODE_ENV=development
+    depends_on:
+      - postgres
 
   mongo:
     image: mongo
@@ -37,3 +39,14 @@ services:
       - ./db:/data/db
     ports:
       - "27017:27017"
+
+  postgres:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "wishlist"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/postgres-volume:/var/lib/postgresql/data
