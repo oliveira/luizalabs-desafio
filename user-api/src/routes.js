@@ -5,7 +5,7 @@ const UserController = require('./controllers/user')
 const {
   userValidationsMiddleware,
   authValidationsMiddleware,
-  authenticateResource
+  authenticateResource,
 } = require('./middlewares')
 
 routes.post(

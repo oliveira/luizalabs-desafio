@@ -1,15 +1,13 @@
+const bcrypt = require('bcryptjs')
 const cuid = require('cuid')
 const moment = require('moment')
-const bcrypt = require('bcryptjs')
-const { isNil } = require('ramda')
 
 const User = require('../models/user')
-
 const { ErrorHandler } = require('../middlewares/error-handler')
 const { isEmailUsed } = require('../middlewares/error-handler/errors')
 
 exports.create = async ({ name, email, password }) => {
-  let hashPassword = bcrypt.hashSync(password, 2)
+  const hashPassword = bcrypt.hashSync(password, 10)
 
   try {
     const user = new User({
@@ -28,10 +26,10 @@ exports.create = async ({ name, email, password }) => {
   }
 }
 
-exports.update = async (id, userData) => {
+exports.update = async (_id, userData) => {
   const user = await User.findOne(
-    { _id: id },
-    { email: 1, name: 1}
+    { _id },
+    { email: 1, name: 1 }
   )
 
   if (user === null) {
@@ -45,10 +43,8 @@ exports.update = async (id, userData) => {
   return user
 }
 
-exports.findById = async (id) => {
-  const user = await User.findOne(
-    { _id: id, enabled: true }
-  )
+exports.findById = async (_id) => {
+  const user = await User.findOne({ _id, enabled: true })
 
   if (user === null) {
     throw new ErrorHandler(404, ['Resource not found'])
@@ -58,9 +54,7 @@ exports.findById = async (id) => {
 }
 
 exports.findByEmail = async (email) => {
-  const user = await User.findOne(
-    { email: email, enabled: true }
-  )
+  const user = await User.findOne({ email, enabled: true })
 
   if (user === null) {
     throw new ErrorHandler(404, ['Resource not found'])
@@ -69,15 +63,15 @@ exports.findByEmail = async (email) => {
   return user
 }
 
-exports.delete = async (id) => {
-    const user = await User.findOne({ _id: id })
+exports.delete = async (_id) => {
+  const user = await User.findOne({ _id })
 
-    if (user === null) {
-      throw new ErrorHandler(404, ['Resource not found'])
-    }
+  if (user === null) {
+    throw new ErrorHandler(404, ['Resource not found'])
+  }
 
-    user.enabled = false
-    user.save()
+  user.enabled = false
+  user.save()
 
-    return
+  return user
 }

@@ -68,9 +68,9 @@ exports.delete = async (req, res, next) => {
     const { id } = req.params
     const authUserId = req.userId
 
-    const deletedUser = await UserService.delete(authUserId, id)
+    await UserService.delete(authUserId, id)
 
-    return res.status(204).json({message: 'Resource deleted successfully'})
+    return res.status(200).json({ message: 'Resource deleted successfully' })
   } catch (error) {
     next(error)
   }

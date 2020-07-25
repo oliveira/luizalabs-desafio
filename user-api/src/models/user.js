@@ -3,12 +3,12 @@ const mongoose = require('mongoose')
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
@@ -16,9 +16,8 @@ const UserSchema = new mongoose.Schema({
   },
   enabled: {
     type: Boolean,
-    default: true
+    default: true,
   }
-
 })
 
 module.exports = mongoose.model('User', UserSchema)

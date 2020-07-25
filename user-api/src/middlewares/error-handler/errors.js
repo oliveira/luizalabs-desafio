@@ -1,4 +1,9 @@
-const isEmailUsed = (err) => err.code === 11000 ? true : false
+const alreadyInUseCode = 11000
+
+const isEmailUsed = err =>
+  err.code === alreadyInUseCode
+    ? true
+    : false
 
 module.exports = {
   isEmailUsed,

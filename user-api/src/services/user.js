@@ -32,6 +32,11 @@ exports.delete = async (userAuthId, id) => {
   }
 
   const deletedUser = await UserRepository.delete(id)
+  console.log('>>>>service delete:', deletedUser)
+
+  if (deletedUser.enabled) {
+    throw new ErrorHandler(500, ['Failed to delete resource'])
+  }
 
   return deletedUser
 }
