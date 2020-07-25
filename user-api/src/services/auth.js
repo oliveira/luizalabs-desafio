@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const UserRepository = require('../repositories/user')
+const { ErrorHandler } = require('../middlewares/error-handler')
 
 exports.authenticate = async function(email, password) {
 
@@ -9,7 +10,7 @@ exports.authenticate = async function(email, password) {
     console.log('auth katiau')
     if (!user) {
       console.log('>>>não achou')
-        throw new Error('Authentication failed')
+      throw new ErrorHandler(401, ['Authentication failed'])
     }
 
     const passwordHash = user.password
@@ -30,6 +31,6 @@ exports.authenticate = async function(email, password) {
 
         return {token: token}
     } else {
-        throw new Error('Authentication failed')
+        throw new ErrorHandler(401, ['Authentication failed'])
     }
 }

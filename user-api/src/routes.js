@@ -5,14 +5,16 @@ const UserController = require('./controllers/user')
 const {
   userValidationsMiddleware,
 } = require('./middlewares/validations/user')
+
 const {
   authValidationsMiddleware,
 } = require('./middlewares/validations/auth')
 
+const authenticateResource = require('./middlewares/authentication/verify-token')
+
 
 routes.post(
   '/auth',
-  authValidationsMiddleware,
   UserController.auth
 )
 
@@ -24,17 +26,20 @@ routes.post(
 
 routes.patch(
   '/users/:id',
-  userValidationsMiddleware,
+  authenticateResource,
+  authValidationsMiddleware,
   UserController.update
 )
 
 routes.get(
   '/users/:id',
+  authenticateResource,
   UserController.find
 )
 
 routes.delete(
   '/users/:id',
+  authenticateResource,
   UserController.delete
 )
 

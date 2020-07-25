@@ -30,12 +30,16 @@ exports.create = async ({ name, email, password }) => {
 }
 
 exports.update = async (id, userData) => {
-  const user = await User.findOne({ _id: id })
+  const user = await User.findOne(
+    { _id: id },
+    { email: 1, name: 1}
+  )
 
   if (user === null) {
     throw new ErrorHandler(404, ['Resource not found'])
   }
 
+  console.log('>>respository:', user)
   user.email = userData.email
   user.name = userData.name
   user.save()
@@ -44,8 +48,9 @@ exports.update = async (id, userData) => {
 }
 
 exports.findById = async (id) => {
+  console.log('>>>id:', id)
   const user = await User.findOne({ _id: id, enabled: true })
-
+  console.log('>>>user:', user)
   if (user === null) {
     throw new ErrorHandler(404, ['Resource not found'])
   }
