@@ -1,7 +1,7 @@
 const cuid = require('cuid')
 
 class ErrorHandler extends Error {
-  constructor(statusCode, details) {
+  constructor (statusCode, details) {
     super()
     this.statusCode = statusCode
     this.details = details

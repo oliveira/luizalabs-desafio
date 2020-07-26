@@ -2,42 +2,42 @@ module.exports = (sequelize, DataTypes) => {
   const Wishlist = sequelize.define('wishlist', {
     user_id: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     price: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     brand: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     product_id: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     updated_at: {
       type: DataTypes.DATE,
       allowNull: true,
-      default: Date.now()
-    }
+      default: Date.now(),
+    },
   }, {
     freezeTableName: true,
     tableName: 'wishlist',
-    timestamps: false
-})
+    timestamps: false,
+  })
 
   return Wishlist
 }

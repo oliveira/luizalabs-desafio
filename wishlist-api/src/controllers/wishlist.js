@@ -16,7 +16,7 @@ const responseFormat = applySpec({
   brand: prop('brand'),
   title: prop('title'),
   product_id: prop('product_id'),
-  created_at: prop('created_at')
+  created_at: prop('created_at'),
 })
 
 const responseBuilder = map(responseFormat)
@@ -35,7 +35,6 @@ exports.create = async (req, res, next) => {
 
 exports.findByUserId = async (req, res, next) => {
   try {
-    const { id } = req.params
     const authUserId = req.userId
     const foundProducts = await ProductService.findByUserId(authUserId)
 

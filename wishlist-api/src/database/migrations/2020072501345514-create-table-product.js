@@ -5,44 +5,44 @@ module.exports = {
         type: Sequelize.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false
+        allowNull: false,
       },
       user_id: {
         type: Sequelize.DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       price: {
         type: Sequelize.DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       image: {
         type: Sequelize.DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       brand: {
         type: Sequelize.DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       product_id: {
         type: Sequelize.DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       title: {
         type: Sequelize.DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
       },
       updated_at: {
         type: Sequelize.DATE,
-        allowNull: true
-      }
+        allowNull: true,
+      },
     })
   },
 
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('wishlist')
-  }
+  },
 }

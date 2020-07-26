@@ -1,10 +1,10 @@
 const fetch = require('node-fetch')
+
 const WishlistRepository = require('../repositories/wishlist')
 const { ErrorHandler } = require('../middlewares/error-handler')
 const { isNotFound } = require('../middlewares/error-handler/errors')
 
-const fetchProductData = id =>
-  fetch(`http://challenge-api.luizalabs.com/api/product/${id}`)
+const fetchProductData = id => fetch(`http://challenge-api.luizalabs.com/api/product/${id}`)
 
 exports.create = async (userAuthId, product) => {
   const productAtDatabase = await WishlistRepository.findProductInUserWishlist(userAuthId, product)
