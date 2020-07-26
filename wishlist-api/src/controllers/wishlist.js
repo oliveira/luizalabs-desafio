@@ -29,7 +29,6 @@ exports.create = async (req, res, next) => {
 
     return res.status(200).json(createdProduct)
   } catch (error) {
-    console.log('>>>error controller:', error)
     next(error)
   }
 }
@@ -42,7 +41,6 @@ exports.findByUserId = async (req, res, next) => {
 
     return res.status(200).json(responseBuilder(foundProducts))
   } catch (error) {
-    console.log('>>>error controller:', error)
     next(error)
   }
 }

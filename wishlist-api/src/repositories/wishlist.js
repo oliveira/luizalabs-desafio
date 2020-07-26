@@ -11,7 +11,7 @@ exports.create = async (userAuthId, product) => {
     image,
     brand,
     title,
-    created_at: Date.now()
+    created_at: Date.now(),
   })
 
   return createdProduct
@@ -20,7 +20,7 @@ exports.create = async (userAuthId, product) => {
 exports.findByUserId = async (userAuthId) => {
   const foundProducts = await db.sequelize.wishlist.findAll({
     where: {
-      user_id: userAuthId
+      user_id: userAuthId,
     }
   })
 
@@ -33,7 +33,7 @@ exports.findProductInUserWishlist = async (userAuthId, product) => {
   const foundProduct = await db.sequelize.wishlist.findOne({
     where: {
       user_id: userAuthId,
-      product_id: id
+      product_id: id,
     }
   })
 

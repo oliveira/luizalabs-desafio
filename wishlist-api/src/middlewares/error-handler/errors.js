@@ -1,5 +1,5 @@
 const isNotFound = response =>
-  response.code === 404
+  response.status === 404
     ? true
     : false
 
