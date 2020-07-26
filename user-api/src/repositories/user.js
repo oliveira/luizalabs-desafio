@@ -36,8 +36,14 @@ exports.update = async (_id, userData) => {
     throw new ErrorHandler(404, ['Resource not found'])
   }
 
-  user.email = userData.email
-  user.name = userData.name
+  if (userData.email) {
+    user.email = userData.email
+  }
+
+  if (userData.name) {
+    user.name = userData.name
+  }
+
   user.save()
 
   return user

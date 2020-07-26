@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test:unit": "ava -vs 'tests/unit/**/*.js'",
     "lint": "eslint --config .eslintrc 'src/**'",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
@@ -18,13 +18,15 @@
     "jsonwebtoken": "8.5.1",
     "moment": "2.24.0",
     "mongoose": "5.9.25",
-    "ramda": "0.25.0"
+    "ramda": "0.25.0",
+    "sinon": "^9.0.2"
   },
   "devDependencies": {
-    "nodemon": "2.0.3",
+    "ava": "3.10.1",
     "eslint": "6.8.0",
     "eslint-config-pagarme-base": "3.0.0",
-    "eslint-plugin-import": "2.20.1"
+    "eslint-plugin-import": "2.20.1",
+    "nodemon": "2.0.3"
   },
   "author": "",
   "license": "ISC"

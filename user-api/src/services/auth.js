@@ -1,10 +1,10 @@
+require('dotenv').config()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const UserRepository = require('../repositories/user')
 const { ErrorHandler } = require('../middlewares/error-handler')
 
-exports.authenticate = async (email, password) => {
+exports.authenticate = async (UserRepository, email, password) => {
   const user = await UserRepository.findByEmail(email)
 
   if (!user) {

@@ -4,6 +4,7 @@ const UserController = require('./controllers/user')
 
 const {
   userValidationsMiddleware,
+  userUpdateValidationsMiddleware,
   authValidationsMiddleware,
   authenticateResource,
 } = require('./middlewares')
@@ -22,7 +23,6 @@ routes.post(
 routes.patch(
   '/users/:id',
   authenticateResource,
-  authValidationsMiddleware,
   UserController.update
 )
 

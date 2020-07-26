@@ -1,12 +1,12 @@
 const UserRepository = require('../repositories/user')
 const { ErrorHandler } = require('../middlewares/error-handler')
 
-exports.create = async (user) => {
+exports.create = async (UserRepository, user) => {
   const createdUser = await UserRepository.create(user)
   return createdUser
 }
 
-exports.update = async (userAuthId, id, user) => {
+exports.update = async (UserRepository, userAuthId, id, user) => {
   if (userAuthId !== id) {
     throw new ErrorHandler(403, ['Forbidden'])
   }
@@ -16,7 +16,7 @@ exports.update = async (userAuthId, id, user) => {
   return updatedUser
 }
 
-exports.findById = async (userAuthId, id) => {
+exports.findById = async (UserRepository, userAuthId, id) => {
   if (userAuthId !== id) {
     throw new ErrorHandler(403, ['Forbidden'])
   }
@@ -26,13 +26,12 @@ exports.findById = async (userAuthId, id) => {
   return foundUser
 }
 
-exports.delete = async (userAuthId, id) => {
+exports.delete = async (UserRepository, userAuthId, id) => {
   if (userAuthId !== id) {
     throw new ErrorHandler(403, ['Forbidden'])
   }
 
   const deletedUser = await UserRepository.delete(id)
-  console.log('>>>>service delete:', deletedUser)
 
   if (deletedUser.enabled) {
     throw new ErrorHandler(500, ['Failed to delete resource'])

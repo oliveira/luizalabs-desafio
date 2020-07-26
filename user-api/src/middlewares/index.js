@@ -1,6 +1,6 @@
 const {
   userValidationsMiddleware,
-} = require('./validations/user')
+} = require('./validations/user-create')
 const {
   authValidationsMiddleware,
 } = require('./validations/auth')
