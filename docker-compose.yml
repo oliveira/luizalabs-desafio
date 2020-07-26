@@ -1,6 +1,24 @@
 version: '2.3'
 
 services:
+  mongo:
+    image: mongo
+    volumes:
+      - ./db:/data/db
+    ports:
+      - 27017:27017
+
+  postgres:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "wishlist"
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db/postgres-volume:/var/lib/postgresql/data
+
   user-api:
     build: ./user-api
     command: npm run dev
@@ -17,16 +35,8 @@ services:
     depends_on:
       - mongo
 
-  mongo:
-    image: mongo
-    volumes:
-      - ./db:/data/db
-    ports:
-      - 27017:27017
-
   wishlist-api:
     build: ./wishlist-api
-    command: npm run dev
     healthcheck:
       test: curl --silent --fail localhost:4000/_health_check || exit 1
       interval: 5s
@@ -35,18 +45,12 @@ services:
       - ./wishlist-api/src/:/app/src
     ports:
       - 4000:4000
-    environment:
-      - NODE_ENV=development
     depends_on:
       - postgres
-
-  postgres:
-    image: postgres:12
+    command: sh -c "/wait && /init"
     environment:
-      POSTGRES_USER: "admin"
-      POSTGRES_PASSWORD: "password"
-      POSTGRES_DB: "wishlist"
-    ports:
-      - 5432:5432
-    volumes:
-      - ./db/postgres-volume:/var/lib/postgresql/data
+    - NODE_ENV=development
+    - WAIT_HOSTS=postgres:5432
+    - WAIT_HOSTS_TIMEOUT=300
+    - WAIT_SLEEP_INTERVAL=5
+    - WAIT_HOST_CONNECT_TIMEOUT=5
