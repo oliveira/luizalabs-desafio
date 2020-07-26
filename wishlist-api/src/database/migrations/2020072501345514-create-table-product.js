@@ -31,10 +31,6 @@ module.exports = {
         type: Sequelize.DataTypes.STRING,
         allowNull: false
       },
-      review_score: {
-        type: Sequelize.DataTypes.STRING,
-        allowNull: false
-      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false

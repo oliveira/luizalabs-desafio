@@ -1,17 +1,41 @@
 const db = require('../database')
 
-exports.create = async (product) => {
-  console.log('333')
-    const createdProduct = await db.sequelize.Wishlist.create({
-      user_id: '111111',
-      price: 10000,
-      image: 'http://challenge-api.luizalabs.com/images/9896cdf5-4e97-d245-8fa4-d7c9e4c773df.jpg',
-      brand: 'adidas',
-      product_id: '9896cdf5-4e97-d245-8fa4-d7c9e4c773df',
-      title: 'Pão de forma',
-      review_score: '5',
-      created_at: Date.now()
-    })
+exports.create = async (userAuthId, product) => {
+  const { price, image, brand, title, id } = product
+  const priceInteger = price * 100
+
+  const createdProduct = await db.sequelize.wishlist.create({
+    product_id: id,
+    user_id: userAuthId,
+    price: priceInteger,
+    image,
+    brand,
+    title,
+    created_at: Date.now()
+  })
 
   return createdProduct
+}
+
+exports.findByUserId = async (userAuthId) => {
+  const foundProducts = await db.sequelize.wishlist.findAll({
+    where: {
+      user_id: userAuthId
+    }
+  })
+
+  return foundProducts
+}
+
+exports.findProductInUserWishlist = async (userAuthId, product) => {
+  const { id } = product
+  console.log('>>>db:', db.sequelize)
+  const foundProduct = await db.sequelize.wishlist.findOne({
+    where: {
+      user_id: userAuthId,
+      product_id: id
+    }
+  })
+
+  return foundProduct
 }
