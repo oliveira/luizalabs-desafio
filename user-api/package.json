@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test:unit": "ava -vs 'tests/unit/**/*.js'",
+    "test:functional": "ava -vs 'tests/functional/**/*.js'",
     "lint": "eslint --config .eslintrc 'src/**'",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
@@ -18,6 +19,7 @@
     "jsonwebtoken": "8.5.1",
     "moment": "2.24.0",
     "mongoose": "5.9.25",
+    "node-fetch": "^2.6.0",
     "ramda": "0.25.0",
     "sinon": "^9.0.2"
   },

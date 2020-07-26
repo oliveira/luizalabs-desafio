@@ -18,7 +18,7 @@ const responseFormat = applySpec({
 exports.auth = async (req, res, next) => {
   try {
     const { email, password } = req.body
-
+    console.log('email, password:', email, password)
     const authenticatedUser = await AuthService.authenticate(
       UserRepository,
       email,
@@ -27,6 +27,7 @@ exports.auth = async (req, res, next) => {
 
     return res.status(200).json(responseFormat(authenticatedUser))
   } catch (error) {
+    console.log('>>>error', error)
     next(error)
   }
 }

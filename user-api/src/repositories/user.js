@@ -62,10 +62,6 @@ exports.findById = async (_id) => {
 exports.findByEmail = async (email) => {
   const user = await User.findOne({ email, enabled: true })
 
-  if (user === null) {
-    throw new ErrorHandler(404, ['Resource not found'])
-  }
-
   return user
 }
 

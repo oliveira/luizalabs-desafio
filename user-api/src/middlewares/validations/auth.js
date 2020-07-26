@@ -4,7 +4,7 @@ const { map, omit } = require('ramda')
 const { ErrorHandler } = require('../error-handler')
 
 const schema = Joi.object({
-  email: Joi.string().required(),
+  email: Joi.string().email().required(),
   password: Joi.string().required(),
 })
 
