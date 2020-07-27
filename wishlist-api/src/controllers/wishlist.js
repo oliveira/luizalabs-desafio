@@ -7,7 +7,8 @@ const {
   prop,
 } = require('ramda')
 
-const ProductService = require('../services/wishlist')
+const WishlistService = require('../services/wishlist')
+const WishlistRepository = require('../repositories/wishlist')
 
 const responseFormat = applySpec({
   type: always('product'),
@@ -25,7 +26,7 @@ exports.create = async (req, res, next) => {
   try {
     const { body: userReq } = req
     const authUserId = req.userId
-    const createdProduct = await ProductService.create(authUserId, userReq)
+    const createdProduct = await WishlistService.create(WishlistRepository, authUserId, userReq)
 
     return res.status(200).json(createdProduct)
   } catch (error) {
@@ -36,7 +37,7 @@ exports.create = async (req, res, next) => {
 exports.findByUserId = async (req, res, next) => {
   try {
     const authUserId = req.userId
-    const foundProducts = await ProductService.findByUserId(authUserId)
+    const foundProducts = await WishlistService.findByUserId(WishlistRepository, authUserId)
 
     return res.status(200).json(responseBuilder(foundProducts))
   } catch (error) {

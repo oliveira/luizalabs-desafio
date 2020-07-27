@@ -6,7 +6,8 @@ const { isNotFound } = require('../middlewares/error-handler/errors')
 
 const fetchProductData = id => fetch(`http://challenge-api.luizalabs.com/api/product/${id}`)
 
-exports.create = async (userAuthId, product) => {
+exports.create = async (WishlistRepository, userAuthId, product) => {
+  console.log('>>>>WishlistRepository:', WishlistRepository)
   const productAtDatabase = await WishlistRepository.findProductInUserWishlist(userAuthId, product)
 
   if (productAtDatabase) {
@@ -24,7 +25,7 @@ exports.create = async (userAuthId, product) => {
   return createdWishlist
 }
 
-exports.findByUserId = async (userAuthId) => {
+exports.findByUserId = async (WishlistRepository, userAuthId) => {
   const foundProducts = await WishlistRepository.findByUserId(userAuthId)
   return foundProducts
 }

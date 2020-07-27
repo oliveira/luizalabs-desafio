@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test:unit": "ava -vs 'tests/unit/**/*.js'",
+    "test:functional": "ava -vs 'tests/functional/**/*.js'",
     "lint": "eslint --config .eslintrc 'src/**'",
     "migrate:latest": "sequelize db:migrate",
     "migrate:rollback": "sequelize db:migrate:undo:all",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
